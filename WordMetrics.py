@@ -25,6 +25,7 @@ def edit_distance_python2(a, b):
             distances[1][j] = min(costs)
         # Move to the next row:
         distances[0][:] = distances[1][:]
+    print(distances[1][len(b)])
     return distances[1][len(b)]
 
 #https://stackabuse.com/levenshtein-distance-and-text-similarity-in-python/

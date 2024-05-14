@@ -24,6 +24,7 @@ def get_word_distance_matrix(words_estimated: list, words_real: list) -> np.arra
         for idx_real in range(number_of_real_words):
             word_distance_matrix[number_of_estimated_words,
                                  idx_real] = len(words_real[idx_real])
+    print(word_distance_matrix)
     return word_distance_matrix
 
 
@@ -65,7 +66,7 @@ def get_best_path_from_distance_matrix(word_distance_matrix):
 
     # Loss should be minimized
     modelCpp.Minimize(total_phoneme_distance)
-
+    print(total_phoneme_distance)
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = TIME_THRESHOLD_MAPPING
     status = solver.Solve(modelCpp)
@@ -75,7 +76,7 @@ def get_best_path_from_distance_matrix(word_distance_matrix):
         for word_idx in range(number_words):
             mapped_indices.append(
                 (solver.Value(estimated_words_order[word_idx])))
-
+        print(mapped_indices)
         return np.array(mapped_indices, dtype=np.int64)
     except:
         return []
@@ -119,6 +120,8 @@ def get_resulting_string(mapped_indices: np.array, words_estimated: list, words_
             mapped_words.append(best_possible_combination)
             mapped_words_indices.append(best_possible_idx)
             continue
+    print(mapped_words)
+    print(mapped_words_indices)
 
     return mapped_words, mapped_words_indices
 

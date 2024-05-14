@@ -14,7 +14,8 @@ pickle-mixin
 sqlalchemy
 transformers
 sentencepiece
+pymongo
+dnspython
 ortools>=9.2.9972
-
-
-
+Flask-Dance  
+Flask-PyMongo  
